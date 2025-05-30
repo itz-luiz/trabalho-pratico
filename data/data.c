@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <time.h>
-#include "../tipos.h"
 #include "data.h"
 #include "../pessoas/pessoas.h"
 
@@ -22,15 +21,15 @@ Data dataAtual(){
     return hoje;
 } // fim dataAtual()
 
-int calcIdade(Pessoa pessoas[], int n){
+int calcIdade(Data nascimento){
     int idade;
     Data hoje = dataAtual();
         
-    idade = hoje.ano - pessoas[n].nascimento.ano;
+    idade = hoje.ano - nascimento.ano;
 
-    if(hoje.mes < pessoas[n].nascimento.mes){
+    if(hoje.mes < nascimento.mes){
         idade--;
-    } else if(hoje.mes == pessoas[n].nascimento.mes && hoje.dia < pessoas[n].nascimento.dia){
+    } else if(hoje.mes == nascimento.mes && hoje.dia < nascimento.dia){
         idade--;
     }
 

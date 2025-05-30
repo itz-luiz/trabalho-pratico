@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include "../tipos.h"
 #include "pessoas.h"
 #include "../data/data.h"
 
@@ -38,11 +37,19 @@ void listaPessoa(Pessoa pessoas[]){
     for(int i=0; i<TAM; i++){
         printf("\n%s", pessoas[i].nome);
         printf("%s", pessoas[i].cpf);
-        printf("\n%d/%d/%d",
-            pessoas[i].nascimento.dia,
-            pessoas[i].nascimento.mes,
-            pessoas[i].nascimento.ano
-        );
+        if(pessoas[i].nascimento.mes < 10){
+            printf("\n%d/0%d/%d",
+                pessoas[i].nascimento.dia,
+                pessoas[i].nascimento.mes,
+                pessoas[i].nascimento.ano
+            );
+        } else {
+            printf("\n%d/%d/%d",
+                pessoas[i].nascimento.dia,
+                pessoas[i].nascimento.mes,
+                pessoas[i].nascimento.ano
+            );
+        }
         // printf("\n%d", calcIdade(pessoas, i));
         printf("\n");
     }
@@ -52,7 +59,7 @@ float mediaIdade(Pessoa pessoas[], int n){
     float soma = 0;
 
     for(int i=0; i<n; i++){
-        soma += calcIdade(pessoas, i);
+        soma += calcIdade(pessoas[i].nascimento);
     }
 
     return soma/n;

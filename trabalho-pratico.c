@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "tipos.h"
 #include "pessoas/pessoas.h"
 #include "data/data.h"
 
