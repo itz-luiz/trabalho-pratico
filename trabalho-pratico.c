@@ -5,6 +5,8 @@
 // Main
 int main(){
     Pessoa pessoas[MAX];
+    inicializacao(pessoas); // Inicialização do sistema
+    
     int opcao, TAM = tamanho();
 
     do{
@@ -28,8 +30,6 @@ int main(){
             case 2: listaPessoa(pessoas);
             break;
             case 3: printf("\nA media das idades e: %.1f\n", mediaIdade(pessoas, TAM));
-            break;
-            case 4: dataAtual();
             break;
             default: printf("\nOpcao invalida. Tente novamente.");
         }

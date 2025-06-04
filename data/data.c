@@ -10,13 +10,11 @@ Data dataAtual(){
     struct tm *tm_info;
 
     time(&t);
-    tm_info = localtime(&t); // Converter para o fuso horário local
+    tm_info = localtime(&t); // Converte para o fuso horário local
 
     hoje.dia = tm_info->tm_mday;
     hoje.mes = tm_info->tm_mon + 1; 
     hoje.ano = tm_info->tm_year + 1900;
-
-    // printf("Today is: %02d/%02d/%04d\n", hoje.dia, hoje.mes, hoje.ano);
     
     return hoje;
 } // fim dataAtual()

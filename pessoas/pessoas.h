@@ -15,8 +15,10 @@ typedef struct{
 } Pessoa;
 
 // Protótipos das funções
+void inicializacao(Pessoa pessoas[]);
 int tamanho();
 void cadastroPessoa(Pessoa pessoas[]);
+void leituraPessoa(Pessoa pessoas[]);
 void listaPessoa(Pessoa pessoas[]);
 float mediaIdade(Pessoa pessoas[], int n);
 

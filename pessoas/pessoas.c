@@ -4,15 +4,37 @@
 #include "pessoas.h"
 #include "../data/data.h"
 
-// Cadastrar variáveis globais
-int TAM = 0; 
+// Variaveis globais
+int TAM = 0;
 
 // Funções
+void inicializacao(Pessoa pessoas[]){
+    printf(
+        "\n= Trabalho Pratico ="
+        "\nLuiz Felipe Volpe P. Brandao\n"
+    );
+    TAM = tamanho();
+}
+
 int tamanho(){
+    FILE* tamanhoArq = fopen("tamanho.dat", "r");
+
+    if(tamanhoArq == NULL){
+        tamanhoArq = fopen("tamanho.dat", "w");
+        TAM = 0;
+        fprintf(tamanhoArq, "%d", TAM);
+    } else{
+        fscanf(tamanhoArq, "%d", &TAM);
+    }
+
     return TAM;
 }
 
-void cadastroPessoa(Pessoa pessoas[]){
+// void cadastroPessoa(Pessoa pessoas[]){
+//     printf("\n%d", TAM);
+// }
+
+void leituraPessoa(Pessoa pessoas[]){
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
