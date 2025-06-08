@@ -14,6 +14,7 @@ void inicializacao(Pessoa pessoas[]){
         "\nLuiz Felipe Volpe P. Brandao\n"
     );
     TAM = tamanho();
+    carregaPessoasArquivo(pessoas);
 }
 
 int tamanho(){
@@ -30,11 +31,15 @@ int tamanho(){
     return TAM;
 }
 
-// void cadastroPessoa(Pessoa pessoas[]){
-//     printf("\n%d", TAM);
-// }
+void carregaPessoasArquivo(Pessoa pessoas[]){
+    FILE* arquivo = fopen("pessoas.dat", "rb");
+    if(arquivo){
+        fread(pessoas, sizeof(pessoas), TAM, arquivo);
+        fclose(arquivo);
+    }
+} // fim carregaPessoasArquivo()
 
-void leituraPessoa(Pessoa pessoas[]){
+void cadastroPessoa(Pessoa pessoas[]){
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
