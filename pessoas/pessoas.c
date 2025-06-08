@@ -39,6 +39,14 @@ void carregaPessoasArquivo(Pessoa pessoas[]){
     }
 } // fim carregaPessoasArquivo()
 
+void gravaPessoasArquivo(Pessoa pessoas[]){
+    FILE* arquivo = fopen("pessoas.dat", "wb");
+    if(arquivo){
+        fread(pessoas, sizeof(pessoas), TAM, arquivo);
+        fclose(arquivo);
+    }
+} // fim carregaPessoasArquivo()
+
 void cadastroPessoa(Pessoa pessoas[]){
     int c;
     while ((c = getchar()) != '\n' && c != EOF);

@@ -18,6 +18,7 @@ typedef struct{
 void inicializacao(Pessoa pessoas[]);
 int tamanho();
 void carregaPessoasArquivo(Pessoa pessoas[]); // Carrega as pessoas registradas no arquivo
+void gravaPessoasArquivo(Pessoa pessoas[]);
 void cadastroPessoa(Pessoa pessoas[]);
 void listaPessoa(Pessoa pessoas[]);
 float mediaIdade(Pessoa pessoas[], int n);

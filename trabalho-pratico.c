@@ -23,6 +23,7 @@ int main(){
 
         switch(opcao){
             case 0: printf("\nObrigado por usar o programa!");
+                    gravaPessoasArquivo(pessoas);
             break;
             case 1: cadastroPessoa(pessoas);
                     printf("\n= Pessoa cadastrada =\n");
