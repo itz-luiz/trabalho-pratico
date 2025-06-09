@@ -27,14 +27,14 @@ int tamanho(){
     } else{
         fscanf(tamanhoArq, "%d", &TAM);
     }
-
+    
     return TAM;
 }
 
 void carregaPessoasArquivo(Pessoa pessoas[]){
     FILE* arquivo = fopen("pessoas.dat", "rb");
     if(arquivo){
-        fread(pessoas, sizeof(pessoas), TAM, arquivo);
+        fread(pessoas, sizeof(Pessoa), TAM, arquivo);
         fclose(arquivo);
     }
 } // fim carregaPessoasArquivo()
@@ -42,10 +42,17 @@ void carregaPessoasArquivo(Pessoa pessoas[]){
 void gravaPessoasArquivo(Pessoa pessoas[]){
     FILE* arquivo = fopen("pessoas.dat", "wb");
     if(arquivo){
-        fread(pessoas, sizeof(pessoas), TAM, arquivo);
+        fwrite(pessoas, sizeof(Pessoa), TAM, arquivo);
         fclose(arquivo);
     }
 } // fim carregaPessoasArquivo()
+
+void gravaTamanhoArquivo(){
+    FILE* tamanho = fopen("tamanho.dat", "w");
+    if(tamanho){
+        fprintf(tamanho, "%d", TAM);
+    }
+}
 
 void cadastroPessoa(Pessoa pessoas[]){
     int c;
@@ -72,30 +79,22 @@ void listaPessoa(Pessoa pessoas[]){
     for(int i=0; i<TAM; i++){
         printf("\n%s", pessoas[i].nome);
         printf("%s", pessoas[i].cpf);
-        if(pessoas[i].nascimento.mes < 10){
-            printf("\n%d/0%d/%d",
-                pessoas[i].nascimento.dia,
-                pessoas[i].nascimento.mes,
-                pessoas[i].nascimento.ano
-            );
-        } else {
-            printf("\n%d/%d/%d",
-                pessoas[i].nascimento.dia,
-                pessoas[i].nascimento.mes,
-                pessoas[i].nascimento.ano
-            );
-        }
+        printf("\n%0d/%0d/%0d",
+            pessoas[i].nascimento.dia,
+            pessoas[i].nascimento.mes,
+            pessoas[i].nascimento.ano
+        );
         // printf("\n%d", calcIdade(pessoas, i));
         printf("\n");
     }
 } // fim listaPessoa()
 
-float mediaIdade(Pessoa pessoas[], int n){
+float mediaIdade(Pessoa pessoas[]){
     float soma = 0;
 
-    for(int i=0; i<n; i++){
+    for(int i=0; i<TAM; i++){
         soma += calcIdade(pessoas[i].nascimento);
     }
 
-    return soma/n;
+    return soma/TAM;
 } // fim mediaIdade()

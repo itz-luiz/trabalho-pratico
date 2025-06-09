@@ -2,12 +2,14 @@
 #include "pessoas/pessoas.h"
 #include "data/data.h"
 
+extern int TAM;
+
 // Main
 int main(){
     Pessoa pessoas[MAX];
     inicializacao(pessoas); // Inicialização do sistema
     
-    int opcao, TAM = tamanho();
+    int opcao;
 
     do{
         printf(
@@ -24,17 +26,20 @@ int main(){
         switch(opcao){
             case 0: printf("\nObrigado por usar o programa!");
                     gravaPessoasArquivo(pessoas);
+                    gravaTamanhoArquivo();
             break;
             case 1: cadastroPessoa(pessoas);
                     printf("\n= Pessoa cadastrada =\n");
             break;
             case 2: listaPessoa(pessoas);
             break;
-            case 3: printf("\nA media das idades e: %.1f\n", mediaIdade(pessoas, TAM));
+            case 3: printf("\nA media das idades e: %.1f\n", mediaIdade(pessoas));
+            break;
+            case 4: printf("\n%d", TAM);
             break;
             default: printf("\nOpcao invalida. Tente novamente.");
         }
-
-        TAM = tamanho();
     } while(opcao != 0);
+
+    return 0;
 } // fim main()
