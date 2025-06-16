@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <time.h>
-#include "data.h"
-#include "../pessoas/pessoas.h"
+#include "data.hpp"
+#include "../pessoas/pessoas.hpp"
 
 Data dataAtual(){
     Data hoje = {0};
@@ -33,3 +31,10 @@ int calcIdade(Data nascimento){
 
     return idade;
 } // fim calcIdade()
+
+Data leData(){
+    Data nascimento;
+    scanf("%d/%d/%d", &nascimento.dia, &nascimento.mes, &nascimento.ano);
+
+    return nascimento;
+}

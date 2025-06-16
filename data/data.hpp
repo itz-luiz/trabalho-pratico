@@ -1,7 +1,12 @@
 #ifndef DATA_H
 #define DATA_H
 
-// #include "../tipos.h"
+// Bibliotecas
+#include <iostream>
+#include <stdio.h>
+#include <time.h>
+using namespace std;
+
 
 typedef struct{
     int dia;
@@ -11,6 +16,7 @@ typedef struct{
 
 // Protótipo das funções
 Data dataAtual();
+Data leData();
 
 int calcIdade(Data nascimento);
 
