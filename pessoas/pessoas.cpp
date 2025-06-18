@@ -41,14 +41,14 @@ void Pessoa::setNascimento(Data nascimento){
 }
 
 void carregaPessoasArquivo(Pessoa pessoas[]){
-    ifstream arquivo("pessoas.dat");
+    ifstream arquivo("pessoas.txt");
     if(arquivo.is_open()){
         for(int i=0; i<TAM; i++){
             lePessoasArquivo(arquivo, pessoas[i]);
         }
         arquivo.close();
     } else {
-        cout << endl << "Arquivo \"pessoas.dat\" nao encontrado";
+        cout << endl << "Arquivo \"pessoas.txt\" nao encontrado";
     }
 } // fim carregaPessoasArquivo()
 
@@ -73,21 +73,51 @@ void lePessoasArquivo(ifstream& arquivo, Pessoa& pessoa){
     nascimento.ano = stoi(ano);
 
     pessoa.setNascimento(nascimento);
+
+    // Lê o delimitador entre pessoas "-={x}=-"
+    // Importante para separar pessoas
+    string delimitador;
+    getline(arquivo, delimitador);
 } // fim lePessoasArquivo()
 
 void gravaPessoasArquivo(Pessoa pessoas[]){
-    FILE* arquivo = fopen("pessoas.dat", "w");
-    if(arquivo){
-        fwrite(pessoas, sizeof(Pessoa), TAM, arquivo);
-        fclose(arquivo);
+    // Abre o arquivo e escreve truncando(escreve por cima), tipo o "w" de C
+    ofstream arquivo("pessoas.txt", ios::trunc);
+
+    if(arquivo.is_open()){
+        for(int i=0; i<TAM; i++){
+            escrevePessoasArquivo(arquivo, pessoas[i]);
+        }
+        arquivo.close();
+    } else {
+        cerr << "Erro: Nao foi possivel abrir \"pessoas.txt\" para a gravacao." << endl;
     }
 } // fim carregaPessoasArquivo()
 
+/*
+ * void gravaPessoasArquivo(Pessoa pessoas[]){
+ *     FILE* arquivo = fopen("pessoas.txt", "w");
+ *     if(arquivo){
+ *         fwrite(pessoas, sizeof(Pessoa), TAM, arquivo);
+ *         fclose(arquivo);
+ *     }
+ * }
+*/
+
+void escrevePessoasArquivo(ofstream& arquivo, Pessoa& pessoa){
+    arquivo << pessoa.getNome() << endl;
+    arquivo << pessoa.getCPF() << endl;
+    arquivo << pessoa.getNascimento().dia << endl;
+    arquivo << pessoa.getNascimento().mes << endl;
+    arquivo << pessoa.getNascimento().ano << endl;
+    arquivo << "-={x}=-" << endl; // Delimitador para separar pessoas no arquivo
+}
+
 void gravaTamanhoArquivo(){
     FILE* tamanho = fopen("tamanho.dat", "w");
-    if(tamanho){
+     if(tamanho){
         fprintf(tamanho, "%d", TAM);
-    }
+    } 
 }
 
 void cadastroPessoa(Pessoa pessoas[]){
@@ -118,28 +148,30 @@ void cadastroPessoa(Pessoa pessoas[]){
     TAM++;
 }
 
-// void cadastroPessoa(Pessoa pessoas[]){
-//     int c;
-//     while ((c = getchar()) != '\n' && c != EOF);
-
-//     printf("\nInsira o nome da pessoa: ");
-//     fgets(pessoas[TAM].nome, MAX_STR, stdin);
-
-//     fflush(stdin);
-//     printf("Insira o CPF (xxx.xxx.xxx-xx): ");
-//     fgets(pessoas[TAM].cpf, MAX_CPF, stdin);
-
-//     printf("Insira a data de nacimento da pessoa (DD/MM/AAAA): ");
-//     scanf("%d/%d/%d",
-//         &pessoas[TAM].nascimento.dia,
-//         &pessoas[TAM].nascimento.mes,
-//         &pessoas[TAM].nascimento.ano
-//     );
-
-//     printf("\n= Pessoa cadastrada =\n");
-
-//     TAM++;
-// } // fim cadastroPessoa()
+/*
+ * void cadastroPessoa(Pessoa pessoas[]){
+ *     int c;
+ *     while ((c = getchar()) != '\n' && c != EOF);
+ *
+ *     printf("\nInsira o nome da pessoa: ");
+ *     fgets(pessoas[TAM].nome, MAX_STR, stdin);
+ *
+ *     fflush(stdin);
+ *     printf("Insira o CPF (xxx.xxx.xxx-xx): ");
+ *     fgets(pessoas[TAM].cpf, MAX_CPF, stdin);
+ *
+ *     printf("Insira a data de nacimento da pessoa (DD/MM/AAAA): ");
+ *     scanf("%d/%d/%d",
+ *         &pessoas[TAM].nascimento.dia,
+ *         &pessoas[TAM].nascimento.mes,
+ *         &pessoas[TAM].nascimento.ano
+ *     );
+ *
+ *     printf("\n= Pessoa cadastrada =\n");
+ *
+ *     TAM++;
+ * } // fim cadastroPessoa()
+*/
 
 void listaPessoa(Pessoa pessoas[]){
     for(int i=0; i<TAM; i++){
@@ -167,18 +199,20 @@ Data Pessoa::getNascimento(){
     return this->nascimento;
 }
 
-// void listaPessoa(Pessoa pessoas[]){
-//     for(int i=0; i<TAM; i++){
-//         printf("\n%s", pessoas[i].nome);
-//         printf("%s", pessoas[i].cpf);
-//         printf("\n%0d/%0d/%0d",
-//             pessoas[i].nascimento.dia,
-//             pessoas[i].nascimento.mes,
-//             pessoas[i].nascimento.ano
-//         );
-//         printf("\n");
-//     }
-// } // fim listaPessoa()
+/*
+ * void listaPessoa(Pessoa pessoas[]){
+ *     for(int i=0; i<TAM; i++){
+ *         printf("\n%s", pessoas[i].nome);
+ *         printf("%s", pessoas[i].cpf);
+ *         printf("\n%0d/%0d/%0d",
+ *             pessoas[i].nascimento.dia,
+ *             pessoas[i].nascimento.mes,
+ *             pessoas[i].nascimento.ano
+ *         );
+ *         printf("\n");
+ *     }
+ * } // fim listaPessoa()
+*/
 
 void apagarTodasPessoas(Pessoa pessoas[]){
     TAM = 0;

@@ -39,8 +39,9 @@ public:
 void inicializacao(Pessoa pessoas[]);
 int tamanho();
 void carregaPessoasArquivo(Pessoa pessoas[]); // Carrega as pessoas registradas no arquivo
-void lePessoasArquivo(ifstream& arquivo, Pessoa& pessoa);
+void lePessoasArquivo(ifstream& arquivo, Pessoa& pessoa); // Lê as pessoas registradas no arquivo (usando getline)
 void gravaPessoasArquivo(Pessoa pessoas[]);
+void escrevePessoasArquivo(ofstream& arquivo, Pessoa& pessoa); // Escreve as pessoas no arquivo, linha por linha
 void gravaTamanhoArquivo();
 void cadastroPessoa(Pessoa pessoas[]);
 void listaPessoa(Pessoa pessoas[]);
