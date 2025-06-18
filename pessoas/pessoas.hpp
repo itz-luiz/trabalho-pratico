@@ -9,12 +9,11 @@
 #include <string>
 #include <cstdio>
 #include <ctime>
+#include <fstream> // Para usar I/O de arquivos em C++
 #include "../data/data.hpp"
 using namespace std;
 
 #define MAX 100
-#define MAX_STR 50
-#define MAX_CPF 15
 
 class Pessoa{
 private:
@@ -40,6 +39,7 @@ public:
 void inicializacao(Pessoa pessoas[]);
 int tamanho();
 void carregaPessoasArquivo(Pessoa pessoas[]); // Carrega as pessoas registradas no arquivo
+void lePessoasArquivo(ifstream& arquivo, Pessoa& pessoa);
 void gravaPessoasArquivo(Pessoa pessoas[]);
 void gravaTamanhoArquivo();
 void cadastroPessoa(Pessoa pessoas[]);

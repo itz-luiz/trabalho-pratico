@@ -35,6 +35,8 @@ int calcIdade(Data nascimento){
 Data leData(){
     Data nascimento;
     scanf("%d/%d/%d", &nascimento.dia, &nascimento.mes, &nascimento.ano);
-
+    
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
     return nascimento;
 }

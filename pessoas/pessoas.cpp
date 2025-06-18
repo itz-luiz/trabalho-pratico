@@ -41,15 +41,42 @@ void Pessoa::setNascimento(Data nascimento){
 }
 
 void carregaPessoasArquivo(Pessoa pessoas[]){
-    FILE* arquivo = fopen("pessoas.dat", "rb");
-    if(arquivo){
-        fread(pessoas, sizeof(Pessoa), TAM, arquivo);
-        fclose(arquivo);
+    ifstream arquivo("pessoas.dat");
+    if(arquivo.is_open()){
+        for(int i=0; i<TAM; i++){
+            lePessoasArquivo(arquivo, pessoas[i]);
+        }
+        arquivo.close();
+    } else {
+        cout << endl << "Arquivo \"pessoas.dat\" nao encontrado";
     }
 } // fim carregaPessoasArquivo()
 
+void lePessoasArquivo(ifstream& arquivo, Pessoa& pessoa){
+    string nome, cpf, dia, mes, ano;
+    Data nascimento;
+
+    // Lê o nome do usuário do arquivo
+    getline(arquivo, nome);
+    pessoa.setNome(nome);
+    
+    // Lê o CPF do usuário do arquivo
+    getline(arquivo, cpf);
+    pessoa.setCPF(cpf);
+
+    // Lê a data de nascimento do usuário do arquivo
+    getline(arquivo, dia);
+    nascimento.dia = stoi(dia); // Transforma o string dia em int para salvar no tipo Data
+    getline(arquivo, mes);
+    nascimento.mes = stoi(mes);
+    getline(arquivo, ano);
+    nascimento.ano = stoi(ano);
+
+    pessoa.setNascimento(nascimento);
+} // fim lePessoasArquivo()
+
 void gravaPessoasArquivo(Pessoa pessoas[]){
-    FILE* arquivo = fopen("pessoas.dat", "wb");
+    FILE* arquivo = fopen("pessoas.dat", "w");
     if(arquivo){
         fwrite(pessoas, sizeof(Pessoa), TAM, arquivo);
         fclose(arquivo);
@@ -64,22 +91,26 @@ void gravaTamanhoArquivo(){
 }
 
 void cadastroPessoa(Pessoa pessoas[]){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    if(TAM >= MAX){
+        cout << endl << "Limite maximo de pessoas atingido" << endl;
+        return;
+    }
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpar o buffer
     
+    // Nome
     cout << endl << "Insira o nome: ";
     string nome;
     getline(cin, nome);
     pessoas[TAM].setNome(nome);
     
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    
+    // CPF
     cout  << "Insira o CPF (000.000.000-00): ";
     string cpf;
     getline(cin, cpf);
     pessoas[TAM].setCPF(cpf);
-    
-    fflush(stdin);
 
+    // Nascimento
     cout << "Insira a data de nascimento: ";
     Data nascimento;
     pessoas[TAM].setNascimento(leData());

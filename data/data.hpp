@@ -3,8 +3,10 @@
 
 // Bibliotecas
 #include <iostream>
-#include <stdio.h>
-#include <time.h>
+#include <stdio.h> // Para usar scanf, fopen, fclose, etc.
+#include <ctime>
+#include <limits>
+#include <ios>
 using namespace std;
 
 
