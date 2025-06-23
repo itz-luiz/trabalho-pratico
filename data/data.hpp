@@ -9,17 +9,32 @@
 #include <ios>
 using namespace std;
 
-
-typedef struct{
+class Data{
+private:
     int dia;
     int mes;
     int ano;
-} Data;
+
+public:
+    Data dataAtual();
+    bool setDia(int dia);
+    bool setMes(int mes);
+    bool setAno(int ano);
+
+    int getDia();
+    int getMes();
+    int getAno();
+
+    int calcIdade(Data nascimento);
+};
 
 // Protótipo das funções
-Data dataAtual();
 Data leData();
 
-int calcIdade(Data nascimento);
+int diaMes(int mes);
+string mesExtenso();
+string diaSemana();
+bool ehBissexto();
+bool dataValida();
 
 #endif // DATA_H

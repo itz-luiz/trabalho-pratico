@@ -13,6 +13,10 @@ void Pessoa::setCPF(string cpf){
     this->cpf = cpf;
 }
 
+void Pessoa::setNascimento(Data nascimento){
+    this->nascimento = nascimento;
+}
+
 string Pessoa::getNome(){
     return this->nome;
 }
@@ -23,10 +27,6 @@ string Pessoa::getCPF(){
 
 Data Pessoa::getNascimento(){
     return this->nascimento;
-}
-
-void Pessoa::setNascimento(Data nascimento){
-    this->nascimento = nascimento;
 }
 
 // Funções de inicialização e finalização
@@ -94,11 +94,11 @@ void lePessoasArquivo(ifstream& arquivo, Pessoa& pessoa){
 
     // Lê a data de nascimento do usuário do arquivo
     getline(arquivo, dia);
-    nascimento.dia = stoi(dia); // Transforma o string dia em int para salvar no tipo Data
+    nascimento.setDia(stoi(dia)); // Transforma o string dia em int para salvar no tipo Data
     getline(arquivo, mes);
-    nascimento.mes = stoi(mes);
+    nascimento.setMes(stoi(mes));
     getline(arquivo, ano);
-    nascimento.ano = stoi(ano);
+    nascimento.setAno(stoi(ano));
 
     pessoa.setNascimento(nascimento);
 
@@ -125,9 +125,9 @@ void gravaPessoasArquivo(Pessoa pessoas[]){
 void escrevePessoasArquivo(ofstream& arquivo, Pessoa& pessoa){
     arquivo << pessoa.getNome() << endl;
     arquivo << pessoa.getCPF() << endl;
-    arquivo << pessoa.getNascimento().dia << endl;
-    arquivo << pessoa.getNascimento().mes << endl;
-    arquivo << pessoa.getNascimento().ano << endl;
+    arquivo << pessoa.getNascimento().getDia() << endl;
+    arquivo << pessoa.getNascimento().getMes() << endl;
+    arquivo << pessoa.getNascimento().getAno() << endl;
     arquivo << "-={x}=-" << endl; // Delimitador para separar pessoas no arquivo
 }
 
@@ -152,8 +152,7 @@ void cadastroPessoa(Pessoa pessoas[]){
     pessoas[TAM].setCPF(cpf);
 
     // Nascimento
-    cout << "Insira a data de nascimento: ";
-    Data nascimento;
+    cout << "Insira a data de nascimento (dd/mm/aaaa): ";
     pessoas[TAM].setNascimento(leData());
 
     TAM++;
@@ -166,9 +165,9 @@ void listaPessoa(Pessoa pessoas[]){
         
         Data nascimento = pessoas[i].getNascimento();
         cout << endl 
-             << setfill('0') << setw(2) << nascimento.dia << "/"
-             << setfill('0') << setw(2) << nascimento.mes << "/"
-             << nascimento.ano << endl;
+             << setfill('0') << setw(2) << nascimento.getDia() << "/"
+             << setfill('0') << setw(2) << nascimento.getMes() << "/"
+             << nascimento.getAno() << endl;
     }
 }
 

@@ -15,11 +15,11 @@ using namespace std;
 
 #define MAX 100
 
-class Pessoa{
+class Pessoa {
 private:
-    string nome;
-    string cpf;
-    Data nascimento;
+    string nome; // Nome da pessoa
+    string cpf; // CPF: 000.000.000-00
+    Data nascimento; // Nascimento: dd/mm/aaaa
 
 public:
     void setNome(string nome);
@@ -33,6 +33,14 @@ public:
 
     void leiaPessoa();
     void escrevePessoa();
+};
+
+class Aluno : public Pessoa {
+private:
+    
+
+public:
+
 };
 
 // Protótipos das funções

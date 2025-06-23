@@ -1,8 +1,46 @@
 #include "data.hpp"
 #include "../pessoas/pessoas.hpp"
 
-Data dataAtual(){
-    Data hoje = {0};
+// Funções set/get
+bool Data::setDia(int dia){
+    if(dia >= 1 && dia <= 31){
+        this->dia = dia;
+        return true;
+    }
+    return false;
+}
+
+bool Data::setMes(int mes){
+    if(mes >= 1 && mes <= 12){
+        this->mes = mes;
+        return true;
+    }
+    return false;
+}
+
+bool Data::setAno(int ano){
+    if(ano > 0){
+        this->ano = ano;
+        return true;
+    }
+    return false;
+}
+
+int Data::getDia(){
+    return this->dia;
+}
+
+int Data::getMes(){
+    return this->mes;
+}
+
+int Data::getAno(){
+    return this->ano;
+}
+
+// Funções gerais
+Data Data::dataAtual(){
+    Data hoje;
     // Receber o tempo atual
     time_t t = time(NULL);
     struct tm *tm_info;
@@ -17,7 +55,7 @@ Data dataAtual(){
     return hoje;
 } // fim dataAtual()
 
-int calcIdade(Data nascimento){
+int Data::calcIdade(Data nascimento){
     int idade;
     Data hoje = dataAtual();
         
@@ -34,9 +72,13 @@ int calcIdade(Data nascimento){
 
 Data leData(){
     Data nascimento;
-    scanf("%d/%d/%d", &nascimento.dia, &nascimento.mes, &nascimento.ano);
-    
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    
+    int dia, mes, ano;
+    char barra; // Para recerber a / ao escrever dd/mm/aaaa
+
+    cin >> dia >> barra >> mes >> barra >> ano;
+    nascimento.setDia(dia);
+    nascimento.setMes(mes);
+    nascimento.setAno(ano);
+
     return nascimento;
 }
