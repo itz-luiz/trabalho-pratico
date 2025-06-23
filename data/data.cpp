@@ -82,3 +82,18 @@ Data leData(){
 
     return nascimento;
 }
+
+int diaMes(int mes){
+    int diasPorMes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if(mes == 2){
+        if(ehBissexto()){
+            return 29;
+        } else {
+            return 28;
+        }
+    } else {
+        return diasPorMes[mes - 1];
+    }
+}
+
