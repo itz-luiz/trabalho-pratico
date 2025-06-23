@@ -26,12 +26,9 @@ int main(){
         switch(opcao){
             case -1: cout << endl << "= DEBUG =" << endl
                           << TAM
-                          << pessoas[0].getNome()
                           << endl;
             break;
-            case 0: cout << endl << "Obrigador por usar o programa" ;
-                    gravaPessoasArquivo(pessoas);
-                    gravaTamanhoArquivo();
+            case 0: finalizacao(pessoas);
             break;
             case 1: cadastroPessoa(pessoas);
             break;

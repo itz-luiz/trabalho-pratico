@@ -4,12 +4,44 @@
 // Variaveis globais
 int TAM = 0;
 
-// Funções
+// Funções para coletar/alterar os dados privados
+void Pessoa::setNome(string nome){
+    this->nome = nome;
+}
+
+void Pessoa::setCPF(string cpf){
+    this->cpf = cpf;
+}
+
+string Pessoa::getNome(){
+    return this->nome;
+}
+
+string Pessoa::getCPF(){
+    return this->cpf;
+}
+
+Data Pessoa::getNascimento(){
+    return this->nascimento;
+}
+
+void Pessoa::setNascimento(Data nascimento){
+    this->nascimento = nascimento;
+}
+
+// Funções de inicialização e finalização
 void inicializacao(Pessoa pessoas[]){
     cout << endl << "= Trabalho Pratico ="
          << endl << "Luiz Felipe Volpe Pinheiro Brandao" << endl;
     TAM = tamanho();
     carregaPessoasArquivo(pessoas);
+}
+
+void finalizacao(Pessoa pessoas[]){
+    cout << endl << "= Obrigado por usar o programa =" << endl;
+
+    gravaPessoasArquivo(pessoas);
+    gravaTamanhoArquivo();
 }
 
 int tamanho(){
@@ -28,18 +60,14 @@ int tamanho(){
     return TAM;
 }
 
-void Pessoa::setNome(string nome){
-    this->nome = nome;
+void gravaTamanhoArquivo(){
+    FILE* tamanho = fopen("tamanho.dat", "w");
+     if(tamanho){
+        fprintf(tamanho, "%d", TAM);
+    } 
 }
 
-void Pessoa::setCPF(string cpf){
-    this->cpf = cpf;
-}
-
-void Pessoa::setNascimento(Data nascimento){
-    this->nascimento = nascimento;
-}
-
+// Funções gerais
 void carregaPessoasArquivo(Pessoa pessoas[]){
     ifstream arquivo("pessoas.txt");
     if(arquivo.is_open()){
@@ -94,16 +122,6 @@ void gravaPessoasArquivo(Pessoa pessoas[]){
     }
 } // fim carregaPessoasArquivo()
 
-/*
- * void gravaPessoasArquivo(Pessoa pessoas[]){
- *     FILE* arquivo = fopen("pessoas.txt", "w");
- *     if(arquivo){
- *         fwrite(pessoas, sizeof(Pessoa), TAM, arquivo);
- *         fclose(arquivo);
- *     }
- * }
-*/
-
 void escrevePessoasArquivo(ofstream& arquivo, Pessoa& pessoa){
     arquivo << pessoa.getNome() << endl;
     arquivo << pessoa.getCPF() << endl;
@@ -111,13 +129,6 @@ void escrevePessoasArquivo(ofstream& arquivo, Pessoa& pessoa){
     arquivo << pessoa.getNascimento().mes << endl;
     arquivo << pessoa.getNascimento().ano << endl;
     arquivo << "-={x}=-" << endl; // Delimitador para separar pessoas no arquivo
-}
-
-void gravaTamanhoArquivo(){
-    FILE* tamanho = fopen("tamanho.dat", "w");
-     if(tamanho){
-        fprintf(tamanho, "%d", TAM);
-    } 
 }
 
 void cadastroPessoa(Pessoa pessoas[]){
@@ -148,34 +159,8 @@ void cadastroPessoa(Pessoa pessoas[]){
     TAM++;
 }
 
-/*
- * void cadastroPessoa(Pessoa pessoas[]){
- *     int c;
- *     while ((c = getchar()) != '\n' && c != EOF);
- *
- *     printf("\nInsira o nome da pessoa: ");
- *     fgets(pessoas[TAM].nome, MAX_STR, stdin);
- *
- *     fflush(stdin);
- *     printf("Insira o CPF (xxx.xxx.xxx-xx): ");
- *     fgets(pessoas[TAM].cpf, MAX_CPF, stdin);
- *
- *     printf("Insira a data de nacimento da pessoa (DD/MM/AAAA): ");
- *     scanf("%d/%d/%d",
- *         &pessoas[TAM].nascimento.dia,
- *         &pessoas[TAM].nascimento.mes,
- *         &pessoas[TAM].nascimento.ano
- *     );
- *
- *     printf("\n= Pessoa cadastrada =\n");
- *
- *     TAM++;
- * } // fim cadastroPessoa()
-*/
-
 void listaPessoa(Pessoa pessoas[]){
     for(int i=0; i<TAM; i++){
-        cout << i;
         cout << endl << pessoas[i].getNome();
         cout << endl << pessoas[i].getCPF();
         
@@ -187,34 +172,7 @@ void listaPessoa(Pessoa pessoas[]){
     }
 }
 
-string Pessoa::getNome(){
-    return this->nome;
-}
-
-string Pessoa::getCPF(){
-    return this->cpf;
-}
-
-Data Pessoa::getNascimento(){
-    return this->nascimento;
-}
-
-/*
- * void listaPessoa(Pessoa pessoas[]){
- *     for(int i=0; i<TAM; i++){
- *         printf("\n%s", pessoas[i].nome);
- *         printf("%s", pessoas[i].cpf);
- *         printf("\n%0d/%0d/%0d",
- *             pessoas[i].nascimento.dia,
- *             pessoas[i].nascimento.mes,
- *             pessoas[i].nascimento.ano
- *         );
- *         printf("\n");
- *     }
- * } // fim listaPessoa()
-*/
-
 void apagarTodasPessoas(Pessoa pessoas[]){
     TAM = 0;
-    printf("\n= Todas as pessoas cadastradas foram removidas =\n");
+    cout << endl << "= Todas as pessoas cadastradas foram removidas =" << endl;
 }

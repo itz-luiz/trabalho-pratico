@@ -37,6 +37,7 @@ public:
 
 // Protótipos das funções
 void inicializacao(Pessoa pessoas[]);
+void finalizacao(Pessoa pessoas[]);
 int tamanho();
 void carregaPessoasArquivo(Pessoa pessoas[]); // Carrega as pessoas registradas no arquivo
 void lePessoasArquivo(ifstream& arquivo, Pessoa& pessoa); // Lê as pessoas registradas no arquivo (usando getline)
