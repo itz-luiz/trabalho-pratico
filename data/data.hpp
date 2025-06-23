@@ -16,25 +16,26 @@ private:
     int ano;
 
 public:
-    Data dataAtual();
-    bool setDia(int dia);
-    bool setMes(int mes);
-    bool setAno(int ano);
+bool setDia(int dia);
+bool setMes(int mes);
+bool setAno(int ano);
 
-    int getDia();
-    int getMes();
-    int getAno();
+int getDia();
+int getMes();
+int getAno();
 
-    int calcIdade(Data nascimento);
+int calcIdade(Data nascimento);
+bool dataValida();
+
 };
 
 // Protótipo das funções
+Data dataAtual();
 Data leData();
 
-int diaMes(int mes);
+int diaMes(int mes, int ano);
 string mesExtenso();
 string diaSemana();
-bool ehBissexto();
-bool dataValida();
+bool ehBissexto(int ano);
 
 #endif // DATA_H

@@ -12,6 +12,7 @@ int main(){
     inicializacao(pessoas); // Inicialização do sistema
     
     int opcao;
+    Data hoje = dataAtual();
 
     do{
         cout << "\n= Menu ="
@@ -25,7 +26,8 @@ int main(){
 
         switch(opcao){
             case -1: cout << endl << "= DEBUG =" << endl
-                          << TAM
+                          << TAM << endl
+                          << hoje.getDia() << "/" << hoje.getMes() << "/" << hoje.getAno()
                           << endl;
             break;
             case 0: finalizacao(pessoas);

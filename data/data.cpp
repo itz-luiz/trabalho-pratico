@@ -39,18 +39,17 @@ int Data::getAno(){
 }
 
 // Funções gerais
-Data Data::dataAtual(){
+Data dataAtual(){
     Data hoje;
     // Receber o tempo atual
     time_t t = time(NULL);
     struct tm *tm_info;
 
-    time(&t);
     tm_info = localtime(&t); // Converte para o fuso horário local
 
-    hoje.dia = tm_info->tm_mday;
-    hoje.mes = tm_info->tm_mon + 1; 
-    hoje.ano = tm_info->tm_year + 1900;
+    hoje.setDia(tm_info->tm_mday);
+    hoje.setMes(tm_info->tm_mon + 1); 
+    hoje.setAno(tm_info->tm_year + 1900);
     
     return hoje;
 } // fim dataAtual()
@@ -83,11 +82,11 @@ Data leData(){
     return nascimento;
 }
 
-int diaMes(int mes){
+int diaMes(int mes, int ano){
     int diasPorMes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if(mes == 2){
-        if(ehBissexto()){
+        if(ehBissexto(ano)){
             return 29;
         } else {
             return 28;
@@ -97,3 +96,25 @@ int diaMes(int mes){
     }
 }
 
+bool ehBissexto(int ano){
+    bool bissexto = false;
+    
+    if (ano % 400 == 0){
+        bissexto = true;
+    } else if (ano % 100 != 0 && ano % 4 == 0){
+        bissexto = true;
+    }
+
+    return bissexto;
+}
+
+bool dataValida(int dia, int mes){
+    bool valida = true;
+    if(dia < 0 || dia > 31){
+        valida = false;
+    } else if(mes < 0 || mes > 12){
+        valida = false;
+    }
+    
+    return valida;
+}
