@@ -15,12 +15,14 @@ int main(){
     Data hoje = dataAtual();
 
     do{
-        cout << "\n= Menu ="
-             << "\n0 - Sair"
-             << "\n1 - Cadastrar pessoas"
-             << "\n2 - Listar pessoas"
-             << "\n3 - Apagar todas as pessoas cadastradas"
-             << "\n\nOpcao: ";
+        cout << endl << "= Menu ="
+             << endl << "0 - Sair"
+             << endl << "1 - Cadastrar pessoas"
+             << endl << "2 - Listar pessoas"
+             << endl << "3 - Pesquisar pessoa por nome"
+             << endl << "4 - Pesquisar pessoa por CPF"
+             << endl << "5 - Apagar todas as pessoas cadastradas"
+             << endl << endl << "Opcao: ";
 
         cin >> opcao;
 
@@ -30,18 +32,29 @@ int main(){
                           << hoje.getDia() << "/" << hoje.getMes() << "/" << hoje.getAno() << endl
                           << endl;
             break;
+            
             case 0: finalizacao(pessoas);
             break;
+
             case 1: cadastroPessoa(pessoas);
             break;
+            
             case 2: if(TAM == 0){
                         cout << endl << "= Nao ha nenhuma pessoa cadastrada" << endl;
                     } else {
                         listaPessoa(pessoas);
                     }
             break;
-            case 3: apagarTodasPessoas(pessoas);
+            
+            case 3: pesquisaPessoaNome(pessoas);
             break;
+            
+            case 4: cout << endl << "A ser implementado...";
+            break;
+            
+            case 5: apagarTodasPessoas(pessoas);
+            break;
+            
             default: printf("\nOpcao invalida. Tente novamente.");
         }
     } while(opcao != 0);

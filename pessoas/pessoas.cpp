@@ -131,6 +131,17 @@ void escrevePessoasArquivo(ofstream& arquivo, Pessoa& pessoa){
     arquivo << "-={x}=-" << endl; // Delimitador para separar pessoas no arquivo
 }
 
+void Pessoa::escrevePessoa(){
+    cout << endl << this->nome;
+    cout << endl << this->getCPF();
+
+    Data nascimento = this->getNascimento();
+    cout << endl
+         << setfill('0') << setw(2) << nascimento.getDia() << "/"
+         << setfill('0') << setw(2) << nascimento.getMes() << "/"
+         << nascimento.getAno() << endl;
+}
+
 void cadastroPessoa(Pessoa pessoas[]){
     if(TAM >= MAX){
         cout << endl << "Limite maximo de pessoas atingido" << endl;
@@ -170,6 +181,30 @@ void listaPessoa(Pessoa pessoas[]){
              << nascimento.getAno() << endl;
     }
 }
+
+void pesquisaPessoaNome(Pessoa pessoas[]){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    string chave;
+    cout << endl << "Insira o nome para pesquisa: ";
+    getline(cin, chave);
+
+    bool encontrado = false;
+    for(int i=0; i < TAM; i++){
+        if(pessoas[i].getNome() == chave){
+            pessoas[i].escrevePessoa();
+            encontrado = true;
+        }
+    }
+    
+    if(!encontrado){
+        cout << endl << "Nenhuma pessoa encontrado com o nome: " << chave;
+    }
+}
+
+// void pesquisaPessoaCPF(Pessoa pessoas[]){
+
+// }
 
 void apagarTodasPessoas(Pessoa pessoas[]){
     TAM = 0;
