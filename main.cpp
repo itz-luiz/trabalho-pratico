@@ -27,7 +27,7 @@ int main(){
         switch(opcao){
             case -1: cout << endl << "= DEBUG =" << endl
                           << TAM << endl
-                          << hoje.getDia() << "/" << hoje.getMes() << "/" << hoje.getAno()
+                          << hoje.getDia() << "/" << hoje.getMes() << "/" << hoje.getAno() << endl
                           << endl;
             break;
             case 0: finalizacao(pessoas);

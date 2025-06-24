@@ -25,7 +25,7 @@ int getMes();
 int getAno();
 
 int calcIdade(Data nascimento);
-bool dataValida();
+
 
 };
 
@@ -34,8 +34,8 @@ Data dataAtual();
 Data leData();
 
 int diaMes(int mes, int ano);
-string mesExtenso();
-string diaSemana();
+string mesExtenso(int mes);
+bool dataValida(int dia, int mes);
 bool ehBissexto(int ano);
 
 #endif // DATA_H

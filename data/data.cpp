@@ -115,6 +115,30 @@ bool dataValida(int dia, int mes){
     } else if(mes < 0 || mes > 12){
         valida = false;
     }
-    
+
     return valida;
+}
+
+string mesExtenso(int mes){
+    string mesPorExtenso = " ";
+    string extenso[] = {
+        "Janeiro",
+        "Fevereiro",
+        "Marco",
+        "Abril"
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro"
+    };
+
+    if(mes > 0 && mes < 12){
+        mesPorExtenso = extenso[mes - 1];
+    }
+
+    return mesPorExtenso;
 }
