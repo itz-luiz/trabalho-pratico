@@ -183,7 +183,7 @@ void listaPessoa(Pessoa pessoas[]){
 }
 
 void pesquisaPessoaNome(Pessoa pessoas[]){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer
 
     string chave;
     cout << endl << "Insira o nome para pesquisa: ";
@@ -202,9 +202,25 @@ void pesquisaPessoaNome(Pessoa pessoas[]){
     }
 }
 
-// void pesquisaPessoaCPF(Pessoa pessoas[]){
+void pesquisaPessoaCPF(Pessoa pessoas[]){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer
 
-// }
+    string chave;
+    cout << endl << "Insira o cpf para pesquisa (000.000.000-00): ";
+    getline(cin, chave);
+
+    bool encontrado = false;
+    for(int i=0; i < TAM; i++){
+        if(pessoas[i].getCPF() == chave){
+            pessoas[i].escrevePessoa();
+            encontrado = true;
+        }
+    }
+
+    if(!encontrado){
+        cout << endl << "Nenhuma pessoa com o cpf \"" << chave << "\" foi encontrada";
+    }
+}
 
 void apagarTodasPessoas(Pessoa pessoas[]){
     TAM = 0;

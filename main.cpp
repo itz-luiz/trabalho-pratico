@@ -49,7 +49,7 @@ int main(){
             case 3: pesquisaPessoaNome(pessoas);
             break;
             
-            case 4: cout << endl << "A ser implementado...";
+            case 4: pesquisaPessoaCPF(pessoas);
             break;
             
             case 5: apagarTodasPessoas(pessoas);
