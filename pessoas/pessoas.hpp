@@ -56,11 +56,12 @@ void gravaPessoasArquivo(Pessoa pessoas[]);
 void gravaTamanhoArquivo();
 
 void cadastroPessoa(Pessoa pessoas[]);
-void listaPessoa(Pessoa pessoas[]);
+void listaPessoa(Pessoa pessoas[], int n);
 bool excluirPessoa(Pessoa pessoas[]);
 void apagarTodasPessoas(Pessoa pessoas[]);
 
 void pesquisaPessoaNome(Pessoa pessoas[]);
+bool pesquisaPessoaNomeRec(Pessoa pessoas[], string chave, int n);
 void pesquisaPessoaCPF(Pessoa pessoas[]);
 
 #endif // PESSOAS_H

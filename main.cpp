@@ -43,7 +43,7 @@ int main(){
             case 2: if(TAM == 0){
                         cout << endl << "= Nao ha nenhuma pessoa cadastrada" << endl;
                     } else {
-                        listaPessoa(pessoas);
+                        listaPessoa(pessoas, TAM);
                     }
             break;
             

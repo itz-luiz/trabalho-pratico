@@ -169,16 +169,18 @@ void cadastroPessoa(Pessoa pessoas[]){
     TAM++;
 }
 
-void listaPessoa(Pessoa pessoas[]){
-    for(int i=0; i<TAM; i++){
-        cout << endl << pessoas[i].getNome();
-        cout << endl << pessoas[i].getCPF();
+void listaPessoa(Pessoa pessoas[], int n){
+    if(n>0){
+        listaPessoa(pessoas, n-1);
+        cout << endl << pessoas[n-1].getNome();
+        cout << endl << pessoas[n-1].getCPF();
         
-        Data nascimento = pessoas[i].getNascimento();
+        Data nascimento = pessoas[n-1].getNascimento();
         cout << endl 
-             << setfill('0') << setw(2) << nascimento.getDia() << "/"
-             << setfill('0') << setw(2) << nascimento.getMes() << "/"
-             << nascimento.getAno() << endl;
+        << setfill('0') << setw(2) << nascimento.getDia() << "/"
+        << setfill('0') << setw(2) << nascimento.getMes() << "/"
+        << nascimento.getAno() << endl;
+        
     }
 }
 
@@ -189,17 +191,34 @@ void pesquisaPessoaNome(Pessoa pessoas[]){
     cout << endl << "Insira o nome para pesquisa: ";
     getline(cin, chave);
 
-    bool encontrado = false;
-    for(int i=0; i < TAM; i++){
-        if(pessoas[i].getNome() == chave){
-            pessoas[i].escrevePessoa();
-            encontrado = true;
-        }
-    }
-    
+    bool encontrado = pesquisaPessoaNomeRec(pessoas, chave, TAM);
+
+    /*
+     * Função iterativa substituida por recursiva
+     * for(int i=0; i < TAM; i++){
+     *     if(pessoas[i].getNome() == chave){
+     *         pessoas[i].escrevePessoa();
+     *         encontrado = true;
+     *     }
+     * }
+    */
+
     if(!encontrado){
         cout << endl << "Nenhuma pessoa encontrado com o nome: " << chave << endl;
     }
+}
+
+bool pesquisaPessoaNomeRec(Pessoa pessoas[], string chave, int n){
+    bool encontrado = false;
+    if(n>0 && !encontrado){
+        if(pessoas[n-1].getNome() == chave){
+            pessoas[n-1].escrevePessoa();
+            encontrado = true;
+        } else {
+            encontrado = pesquisaPessoaNomeRec(pessoas, chave, n-1);
+        }
+    }
+    return encontrado;
 }
 
 void pesquisaPessoaCPF(Pessoa pessoas[]){
