@@ -57,6 +57,7 @@ void gravaTamanhoArquivo();
 
 void cadastroPessoa(Pessoa pessoas[]);
 void listaPessoa(Pessoa pessoas[]);
+bool excluirPessoa(Pessoa pessoas[]);
 void apagarTodasPessoas(Pessoa pessoas[]);
 
 void pesquisaPessoaNome(Pessoa pessoas[]);

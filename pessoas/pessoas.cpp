@@ -198,17 +198,17 @@ void pesquisaPessoaNome(Pessoa pessoas[]){
     }
     
     if(!encontrado){
-        cout << endl << "Nenhuma pessoa encontrado com o nome: " << chave;
+        cout << endl << "Nenhuma pessoa encontrado com o nome: " << chave << endl;
     }
 }
 
 void pesquisaPessoaCPF(Pessoa pessoas[]){
     cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer
-
+    
     string chave;
     cout << endl << "Insira o cpf para pesquisa (000.000.000-00): ";
     getline(cin, chave);
-
+    
     bool encontrado = false;
     for(int i=0; i < TAM; i++){
         if(pessoas[i].getCPF() == chave){
@@ -216,10 +216,32 @@ void pesquisaPessoaCPF(Pessoa pessoas[]){
             encontrado = true;
         }
     }
-
+    
     if(!encontrado){
-        cout << endl << "Nenhuma pessoa com o cpf \"" << chave << "\" foi encontrada";
+        cout << endl << "Nenhuma pessoa com o cpf \"" << chave << "\" foi encontrada" << endl;
     }
+}
+
+bool excluirPessoa(Pessoa pessoas[]){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer
+
+    string chave;
+    cout << endl << "Insira o CPF da pessoa que deseja excluir (000.000.000-00): ";
+    getline(cin, chave);
+
+    for(int i=0; i<TAM; i++){
+        if(pessoas[i].getCPF() == chave){
+            cout << endl << pessoas[i].getNome() << " foi excluido(a)" << endl;
+            for(int j=i; j < TAM-1; j++){
+                pessoas[j] = pessoas[j + 1]; // shift -1
+            }
+            TAM--;
+            return true;
+        }
+    }
+    
+    cout << endl << "Pessoa nao encontrada" << endl;
+    return false;
 }
 
 void apagarTodasPessoas(Pessoa pessoas[]){

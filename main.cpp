@@ -21,7 +21,8 @@ int main(){
              << endl << "2 - Listar pessoas"
              << endl << "3 - Pesquisar pessoa por nome"
              << endl << "4 - Pesquisar pessoa por CPF"
-             << endl << "5 - Apagar todas as pessoas cadastradas"
+             << endl << "5 - Excluir pessoa especifica"
+             << endl << "6 - Excluir todas as pessoas cadastradas"
              << endl << endl << "Opcao: ";
 
         cin >> opcao;
@@ -51,8 +52,11 @@ int main(){
             
             case 4: pesquisaPessoaCPF(pessoas);
             break;
+
+            case 5: excluirPessoa(pessoas);
+            break;
             
-            case 5: apagarTodasPessoas(pessoas);
+            case 6: apagarTodasPessoas(pessoas);
             break;
             
             default: printf("\nOpcao invalida. Tente novamente.");
