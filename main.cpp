@@ -1,10 +1,7 @@
-#include <iostream>
-#include <stdio.h>
 #include "pessoas/pessoas.hpp"
 #include "data/data.hpp"
-using namespace std;
-
-extern int TAM;
+#include "aluno/aluno.hpp"
+#include "professor/professor.hpp"
 
 // Main
 int main(){
@@ -12,6 +9,7 @@ int main(){
     inicializacao(pessoas); // Inicialização do sistema
     
     int opcao;
+    string temp;
     Data hoje = dataAtual();
 
     do{
@@ -26,10 +24,11 @@ int main(){
              << endl << endl << "Opcao: ";
 
         cin >> opcao;
+        cin.ignore();
 
         switch(opcao){
             case -1: cout << endl << "= DEBUG =" << endl
-                          << TAM << endl
+                          << Pessoa::TAM << endl
                           << hoje.getDia() << "/" << hoje.getMes() << "/" << hoje.getAno() << endl
                           << endl;
             break;
@@ -40,11 +39,13 @@ int main(){
             case 1: cadastroPessoa(pessoas);
             break;
             
-            case 2: if(TAM == 0){
+            case 2: if(Pessoa::TAM == 0){
                         cout << endl << "= Nao ha nenhuma pessoa cadastrada" << endl;
                     } else {
-                        listaPessoa(pessoas, TAM);
+                        listaPessoa(pessoas, Pessoa::TAM);
                     }
+                    cout << endl << "Pressione 'Enter' para continuar";
+                    cin.get();
             break;
             
             case 3: pesquisaPessoaNome(pessoas);

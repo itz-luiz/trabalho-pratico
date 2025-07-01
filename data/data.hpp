@@ -1,5 +1,5 @@
-#ifndef DATA_H
-#define DATA_H
+#ifndef DATA_HPP
+#define DATA_HPP
 
 // Bibliotecas
 #include <iostream>
@@ -16,17 +16,20 @@ private:
     int ano;
 
 public:
-bool setDia(int dia);
-bool setMes(int mes);
-bool setAno(int ano);
+    Data();
+    ~Data(){};
+    Data(int ano);
+    Data(int dia, int mes, int ano);
 
-int getDia();
-int getMes();
-int getAno();
+    bool setDia(int dia);
+    bool setMes(int mes);
+    bool setAno(int ano);
 
-int calcIdade(Data nascimento);
+    int getDia();
+    int getMes();
+    int getAno();
 
-
+    int calcIdade(Data nascimento);
 };
 
 // Protótipo das funções
@@ -38,4 +41,4 @@ string mesExtenso(int mes);
 bool dataValida(int dia, int mes);
 bool ehBissexto(int ano);
 
-#endif // DATA_H
+#endif // DATA_HPP

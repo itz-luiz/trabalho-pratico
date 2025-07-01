@@ -2,6 +2,7 @@
 #include "../pessoas/pessoas.hpp"
 
 // Funções set/get
+
 bool Data::setDia(int dia){
     if(dia >= 1 && dia <= 31){
         this->dia = dia;
@@ -24,6 +25,24 @@ bool Data::setAno(int ano){
         return true;
     }
     return false;
+}
+
+Data::Data(){
+    dia = 0;
+    mes = 0;
+    ano = 0;
+}
+
+Data::Data(int Ano){
+    dia = 0;
+    mes = 0;
+    setAno(ano);
+}
+
+Data::Data(int dia, int mes, int ano){
+    setDia(dia);
+    setMes(mes);
+    setAno(ano);
 }
 
 int Data::getDia(){

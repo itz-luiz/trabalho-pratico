@@ -1,5 +1,5 @@
-#ifndef PESSOAS_H
-#define PESSOAS_H
+#ifndef PESSOAS_HPP
+#define PESSOAS_HPP
 
 // Bibliotecas
 #include <iostream>
@@ -23,6 +23,12 @@ private:
     Data nascimento; // Nascimento: dd/mm/aaaa
 
 public:
+    static int TAM;
+
+    Pessoa();
+    Pessoa(string nome);
+    Pessoa(string nome, int dia, int mes, int ano);
+    
     void setNome(string nome);
     string getNome();
 
@@ -35,14 +41,6 @@ public:
     void leiaPessoa();
     void escrevePessoa();
 };
-
-// class Aluno : public Pessoa {
-// private:
-
-
-// public:
-
-// };
 
 // Protótipos das funções
 void inicializacao(Pessoa pessoas[]);
@@ -64,4 +62,4 @@ void pesquisaPessoaNome(Pessoa pessoas[]);
 bool pesquisaPessoaNomeRec(Pessoa pessoas[], string chave, int n);
 void pesquisaPessoaCPF(Pessoa pessoas[]);
 
-#endif // PESSOAS_H
+#endif // PESSOAS_HPP

@@ -29,6 +29,22 @@ Data Pessoa::getNascimento(){
     return this->nascimento;
 }
 
+// Funções de construtores e destrutores
+Pessoa::Pessoa(){
+    nome = "";
+    cpf = "";
+}
+
+Pessoa::Pessoa(string nome){
+    this->nome = nome;
+    cpf = "";
+}
+
+Pessoa::Pessoa(string nome, int dia, int mes, int ano){
+    this->nome = nome;
+    this->cpf = cpf;
+}
+
 // Funções de inicialização e finalização
 void inicializacao(Pessoa pessoas[]){
     cout << endl << "= Trabalho Pratico ="
@@ -148,7 +164,7 @@ void cadastroPessoa(Pessoa pessoas[]){
         return;
     }
 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpar o buffer
+    cin.ignore(); // Limpar o buffer
     
     // Nome
     cout << endl << "Insira o nome: ";
@@ -180,12 +196,11 @@ void listaPessoa(Pessoa pessoas[], int n){
         << setfill('0') << setw(2) << nascimento.getDia() << "/"
         << setfill('0') << setw(2) << nascimento.getMes() << "/"
         << nascimento.getAno() << endl;
-        
     }
 }
 
 void pesquisaPessoaNome(Pessoa pessoas[]){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer
+    cin.ignore(); // Limpa o buffer
 
     string chave;
     cout << endl << "Insira o nome para pesquisa: ";
@@ -222,7 +237,7 @@ bool pesquisaPessoaNomeRec(Pessoa pessoas[], string chave, int n){
 }
 
 void pesquisaPessoaCPF(Pessoa pessoas[]){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer
+    cin.ignore(); // Limpa o buffer
     
     string chave;
     cout << endl << "Insira o cpf para pesquisa (000.000.000-00): ";
@@ -242,7 +257,7 @@ void pesquisaPessoaCPF(Pessoa pessoas[]){
 }
 
 bool excluirPessoa(Pessoa pessoas[]){
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpa o buffer
+    cin.ignore(); // Limpa o buffer
 
     string chave;
     cout << endl << "Insira o CPF da pessoa que deseja excluir (000.000.000-00): ";
