@@ -6,14 +6,36 @@
 
 class Aluno : public Pessoa{
 private:
-    int matricula;
-
+    string matricula;
+    const int tipo = 1;
 
 public:
-    void setMatricula(int matricula);
-    
+    Aluno(string nome, string cpf, int dia, int mes, int ano, string matricula) : Pessoa(nome, cpf, dia, mes, ano), matricula(matricula) {};
+    Aluno(string nome, int dia, int mes, int ano) : Pessoa(nome, dia, mes, ano) {};
+    Aluno(string matricula);
+    Aluno() {};
 
+    string getMatricula();
+    int getTipo();
 
+    void setMatricula(string mat);
+    void leiaPessoa();
+    void escrevePessoa();
+    void escreveData();
 };
+
+// Funções de pesquisa
+void pesquisaAlunoNome(Pessoa* pessoas[]);
+void pesquisaAlunoCPF(Pessoa* pessoas[]);
+
+// Funções de excluir pessoas
+bool apagarAluno(Pessoa* pessoas[]);
+void apagarTodosAlunos(Pessoa* pessoas[]);
+
+// Funções de listar
+void listaAlunos(Pessoa* pessoas[]);
+void listarAlunosAniversariantes(Pessoa* pessoas[], int mes);
+
+void escreveAlunoArquivo(ofstream& arquivo, Pessoa* pessoa);
 
 #endif // ALUNO_HPP

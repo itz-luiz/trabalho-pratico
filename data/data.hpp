@@ -29,6 +29,8 @@ public:
     int getMes();
     int getAno();
 
+    bool mesIgual(int mes);
+
     int calcIdade(Data nascimento);
 };
 

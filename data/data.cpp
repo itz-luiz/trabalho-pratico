@@ -73,6 +73,10 @@ Data dataAtual(){
     return hoje;
 } // fim dataAtual()
 
+bool Data::mesIgual(int mes){
+    return this->mes == mes;
+}
+
 int Data::calcIdade(Data nascimento){
     int idade;
     Data hoje = dataAtual();
@@ -91,7 +95,7 @@ int Data::calcIdade(Data nascimento){
 Data leData(){
     Data nascimento;
     int dia, mes, ano;
-    char barra; // Para recerber a / ao escrever dd/mm/aaaa
+    char barra; // Para receber a / ao escrever dd/mm/aaaa
 
     cin >> dia >> barra >> mes >> barra >> ano;
     nascimento.setDia(dia);
