@@ -4,13 +4,17 @@ void Professor::setEspecializacao(string esp){
     this->especializacao = esp;
 };
 
-Professor::Professor(string esp){
-    setEspecializacao(esp);
+int Professor::getTipo(){
+    return tipo;
 }
 
 string Professor::getEspecializacao(){
     return especializacao;
 };
+
+Professor::Professor(string esp){
+    setEspecializacao(esp);
+}
 
 void escreveProfessorArquivo(ofstream& arquivo, Pessoa* pessoa){
     Professor* professor = static_cast<Professor*>(pessoa);

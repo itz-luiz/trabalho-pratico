@@ -13,15 +13,17 @@ public:
     Aluno(string nome, string cpf, int dia, int mes, int ano, string matricula) : Pessoa(nome, cpf, dia, mes, ano), matricula(matricula) {};
     Aluno(string nome, int dia, int mes, int ano) : Pessoa(nome, dia, mes, ano) {};
     Aluno(string matricula);
+    
     Aluno() {};
-
-    string getMatricula();
-    int getTipo();
+    ~Aluno() {};
 
     void setMatricula(string mat);
+    string getMatricula();
+    
+    int getTipo();
+
     void leiaPessoa();
     void escrevePessoa();
-    void escreveData();
 };
 
 // Funções de pesquisa

@@ -31,6 +31,7 @@ public:
 
     bool mesIgual(int mes);
 
+    void escreveData();
     int calcIdade(Data nascimento);
 };
 

@@ -13,6 +13,10 @@ void Aluno::setMatricula(string mat){
     this->matricula = mat;
 }
 
+Aluno::Aluno(string matricula){
+    setMatricula(matricula);
+}
+
 void escreveAlunoArquivo(ofstream& arquivo, Pessoa* pessoa){
     Aluno* aluno = static_cast<Aluno*>(pessoa);
     arquivo << aluno->getNome() << endl;
@@ -25,9 +29,6 @@ void escreveAlunoArquivo(ofstream& arquivo, Pessoa* pessoa){
     arquivo << "-={x}=-" << endl; // Delimitador para separar pessoas no arquivo
 }
 
-Aluno::Aluno(string matricula){
-    setMatricula(matricula);
-}
 
 void Aluno::leiaPessoa(){
     string nome;
